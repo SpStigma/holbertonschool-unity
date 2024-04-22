@@ -550,7 +550,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 710afe29ccfcf8641a28c71ad30c3078, type: 2}
     - target: {fileID: 3444109781315089549, guid: 70e5b58c6fbcb1d41b296502c09e48e9, type: 3}
       propertyPath: m_Name
-      value: Black ball
+      value: Black Ball
       objectReference: {fileID: 0}
     - target: {fileID: 3893582157231367310, guid: 70e5b58c6fbcb1d41b296502c09e48e9, type: 3}
       propertyPath: m_LocalPosition.x
