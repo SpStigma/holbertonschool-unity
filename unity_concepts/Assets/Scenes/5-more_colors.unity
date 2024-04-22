@@ -669,7 +669,7 @@ PrefabInstance:
     - target: {fileID: 2601965177133596371, guid: 70e5b58c6fbcb1d41b296502c09e48e9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5ddb54bd7dee3dd42a6f8db524584803, type: 2}
+      objectReference: {fileID: 2100000, guid: 644b94cf63b5e344e9bdb8df368099f5, type: 2}
     - target: {fileID: 3444109781315089549, guid: 70e5b58c6fbcb1d41b296502c09e48e9, type: 3}
       propertyPath: m_Name
       value: Red Ball
