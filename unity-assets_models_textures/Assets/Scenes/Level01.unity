@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 70741146}
   - component: {fileID: 70741145}
   - component: {fileID: 70741144}
+  - component: {fileID: 70741148}
   m_Layer: 0
   m_Name: WinFlag
   m_TagString: Untagged
@@ -317,6 +318,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70741148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70741143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e00c6b1dabb5347a4b01a6d14e14e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerScript: {fileID: 836110078}
+  timerText: {fileID: 1182379567}
 --- !u!1 &152346730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3082,14 @@ PrefabInstance:
     - target: {fileID: 1860149012171059620, guid: 0d94af40bb366ff46bc31abf17a2e549, type: 3}
       propertyPath: m_Name
       value: TimerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446924234772639834, guid: 0d94af40bb366ff46bc31abf17a2e549, type: 3}
+      propertyPath: m_margin.x
+      value: -38.983566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446924234772639834, guid: 0d94af40bb366ff46bc31abf17a2e549, type: 3}
+      propertyPath: m_margin.z
+      value: -42.78692
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d94af40bb366ff46bc31abf17a2e549, type: 3}
