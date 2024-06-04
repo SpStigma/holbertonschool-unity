@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,7 +6,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float gravity = -9.18f;
     public float jumpHeight = 8f; 
-    
+
     // Vector to store the player's velocity
     Vector3 velocity;
 
@@ -18,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
+
+    private Vector3 resetPosition = new Vector3(0, 20, 0);
 
     void Start()
     {
@@ -38,9 +37,10 @@ public class PlayerController : MonoBehaviour
         // Get the input from the horizontal and vertical axes (WASD or arrow keys)
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        
+
         // Calculate the movement vector based on input
-        Vector3 movement = transform.right * x + transform.forward * z;
+        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 movement = cameraForward * z + Camera.main.transform.right * x;
 
         // Move the player based on the movement vector and speed
         controller.Move(movement * speed * Time.deltaTime);
@@ -54,7 +54,17 @@ public class PlayerController : MonoBehaviour
         // Apply gravity to the y velocity
         velocity.y += gravity * Time.deltaTime;
 
-         // Move the player based on the velocity vector multiplied by 2 time Time.
+        // Move the player based on the velocity vector multiplied by 2 time Time.
         controller.Move(velocity * Time.deltaTime);
+
+        ResetFalling();
+    }
+
+    public void ResetFalling()
+    {
+        if (transform.position.y <  -20)
+        {
+            transform.position = resetPosition;
+        }
     }
 }
