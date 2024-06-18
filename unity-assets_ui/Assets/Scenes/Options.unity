@@ -2637,6 +2637,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8835846977861264454, guid: 445dd6083ab92b14d85afd7461bebdf6, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835846977861264454, guid: 445dd6083ab92b14d85afd7461bebdf6, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 1285778618, guid: 9ceb5c507edec784e8ad0163ed306c11, type: 3}
+    - target: {fileID: 8835846977861264454, guid: 445dd6083ab92b14d85afd7461bebdf6, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 129731476, guid: 9ceb5c507edec784e8ad0163ed306c11, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 445dd6083ab92b14d85afd7461bebdf6, type: 3}
 --- !u!224 &3525145080047018121 stripped
@@ -2739,6 +2751,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 1285778618, guid: 9ceb5c507edec784e8ad0163ed306c11, type: 3}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 129731476, guid: 9ceb5c507edec784e8ad0163ed306c11, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
 --- !u!224 &7235799820285748197 stripped
