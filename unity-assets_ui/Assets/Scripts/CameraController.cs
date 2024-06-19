@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
     public float smoothTime = 0.2f;
+    public bool isInverted;
 
 
     // Update is called once per frame
@@ -25,8 +26,16 @@ public class CameraController : MonoBehaviour
             float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
             
-            _rotationY += mouseX;
-            _rotationX -= mouseY;
+            if (isInverted == false)
+            {
+                _rotationY += mouseX;
+                _rotationX -= mouseY;
+            }
+            else
+            {
+                _rotationY -= mouseX;
+                _rotationX += mouseY;
+            }
 
             Vector3 nextRotation = new Vector3(_rotationX, _rotationY, 0);
             _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, smoothTime);
