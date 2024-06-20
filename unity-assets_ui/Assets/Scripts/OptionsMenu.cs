@@ -20,7 +20,6 @@ public class OptionsMenu : MonoBehaviour
 
     public void Back()
     {
-        // Load the previous scene
-        SceneManager.LoadScene(previousScene);
+        SceneController.instance.LoadPreviousScene();
     }
 }
