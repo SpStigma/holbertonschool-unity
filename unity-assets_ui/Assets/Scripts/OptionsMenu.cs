@@ -4,22 +4,14 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    public Button backButton;
-
-    // Variable to store the name of the previous scene
-    private string previousScene;
-
-    void Start()
-    {
-        // Get the previous scene from PlayerPrefs
-        previousScene = PlayerPrefs.GetString("PreviousScene", "MainMenu"); // Default to "MainMenu" if not set
-
-        // Add listener to the back button
-        backButton.onClick.AddListener(Back);
-    }
+    public Toggle applyButton;
 
     public void Back()
     {
         SceneController.instance.LoadPreviousScene();
+    }
+
+    public void Apply()
+    {
     }
 }
