@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf1e58c74ee1ab4dbf3d82eef98bcf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyButton: {fileID: 0}
+  isYInverted: {fileID: 550238528}
 --- !u!1 &187812831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,6 +2768,34 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
       objectReference: {fileID: 129731476, guid: 9ceb5c507edec784e8ad0163ed306c11, type: 3}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 114453354}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Apply
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OptionsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200162354861250387, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83b4a4dc6c5dd8345aaadc7162c8de74, type: 3}
 --- !u!224 &7235799820285748197 stripped

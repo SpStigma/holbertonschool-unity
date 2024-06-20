@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    public Toggle applyButton;
+    public Toggle isYInverted;
 
     public void Back()
     {
@@ -13,5 +13,15 @@ public class OptionsMenu : MonoBehaviour
 
     public void Apply()
     {
+        if(isYInverted.isOn)
+        {
+            GameSettings.isInverted = true;
+            SceneController.instance.LoadPreviousScene();
+        }
+        else
+        {
+            GameSettings.isInverted = false;
+            SceneController.instance.LoadPreviousScene();
+        }
     }
 }

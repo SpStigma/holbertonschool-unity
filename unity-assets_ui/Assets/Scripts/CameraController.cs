@@ -1,7 +1,14 @@
 using UnityEngine;
 
+
+public static class GameSettings
+{
+    public static bool isInverted = false;
+}
+
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance;
     [SerializeField]
     private float _mouseSensitivity = 3.0f;
 
@@ -17,6 +24,12 @@ public class CameraController : MonoBehaviour
     public float smoothTime = 0.2f;
     public bool isInverted;
 
+    void Start()
+    {
+        instance = this;
+        isInverted = GameSettings.isInverted;
+
+    }
 
     // Update is called once per frame
     void LateUpdate()
