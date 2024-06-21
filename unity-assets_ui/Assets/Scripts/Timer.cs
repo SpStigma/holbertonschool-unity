@@ -4,11 +4,14 @@ using System;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer instance;
     public TextMeshProUGUI timerText;
     private float time;
+    public TextMeshProUGUI timerToGive;
 
     void Start()
     {
+        instance = this;
         time = 0f;
     }
 
@@ -30,5 +33,10 @@ public class Timer : MonoBehaviour
 
         timerText.text = $"{minutes}:{seconds:00}.{milliseconds:00}";
         
+    }
+
+    public void Win()
+    {
+        timerToGive.text = timerText.text;
     }
 }
