@@ -183,7 +183,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -214,38 +214,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &650704254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 959043022600021944, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-  m_PrefabInstance: {fileID: 325075007530239757}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &650704255
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650704254}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1995496243
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,71 +312,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  ammo: {fileID: 650704254}
---- !u!1001 &325075007530239757
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 959043022600021944, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_Name
-      value: ammo
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.227
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.628
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268083453613662431, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 959043022600021944, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 650704255}
-  m_SourcePrefab: {fileID: 100100000, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
+  ammo: {fileID: 959043022600021944, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
+  cooldownAmmo: 1
+  time: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1995496245}
-  - {fileID: 325075007530239757}

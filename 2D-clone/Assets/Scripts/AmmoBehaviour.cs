@@ -1,19 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoBehaviour : MonoBehaviour
 {
-    public float speed = 5;
-    // Start is called before the first frame update
+    public float speed = 5f;
+    private Rigidbody2D rb;
+
     void Start()
     {
-       GetComponent<Rigidbody2D>().velocity = transform.up * speed;  
+        rb = GetComponent<Rigidbody2D>();
+        Shoot();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Shoot()
     {
-        
+        rb.velocity = transform.up * speed;
+    }
+
+    public void Update()
+    {
+        DestructOutsideCam();
+    }
+
+    public void DestructOutsideCam()
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+
+        // Check if the ammo is outside the camera's view
+        if (viewportPosition.x < 0 || viewportPosition.x > 1 ||
+            viewportPosition.y < 0 || viewportPosition.y > 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -6,13 +6,15 @@ public class PlayerMovement : MonoBehaviour
     private float minX, maxX, minY, maxY;
     private Camera cam;
     public GameObject ammo;
+    public float cooldownAmmo = 2;
+    public float time;
 
     void Start()
     {
         // Get the main Camera
         cam = Camera.main;
 
-        // Calculate boundaries of the main cam
+        // Calculate the boundaries of the main cam
         Vector3 screenBottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane));
         Vector3 screenTopRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
 
@@ -20,11 +22,20 @@ public class PlayerMovement : MonoBehaviour
         maxX = screenTopRight.x;
         minY = screenBottomLeft.y;
         maxY = screenTopRight.y;
+        time = 0f;
     }
 
     void Update()
     {
+        time += Time.deltaTime;
+
         Movement();
+
+        if (time >= cooldownAmmo)
+        {
+            Projectile();
+            time = 0f;
+        }
     }
 
     public void Movement()
@@ -52,6 +63,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Projectile()
     {
-        Instantiate(ammo);
+        Instantiate(ammo, transform.position, transform.rotation);
     }
 }
