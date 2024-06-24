@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
-
     private float minX, maxX, minY, maxY;
     private Camera cam;
+    public GameObject ammo;
 
     void Start()
     {
@@ -48,5 +48,10 @@ public class PlayerMovement : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         // Adjust the angle if necessary
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+    }
+
+    public void Projectile()
+    {
+        Instantiate(ammo);
     }
 }
