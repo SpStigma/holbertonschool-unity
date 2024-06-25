@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemiesBehaviour : MonoBehaviour
 {
+    public static EnemiesBehaviour instance;
     public float speed = 5f;
     public float minDelay = 1f;
     public float maxDelay = 3f;
@@ -13,9 +14,11 @@ public class EnemiesBehaviour : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 velocity = Vector3.zero;
     private float moveDelay;
+    public float health = 100;
 
     void Start()
     {
+        instance = this;
         SetRandomTargetPosition();
         SetRandomDelay();
     }
@@ -24,6 +27,7 @@ public class EnemiesBehaviour : MonoBehaviour
     {
         MoveTowardsTarget();
         SmoothLookAtPlayer();
+        DestroyEnnemy();
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             SetRandomTargetPosition();
@@ -58,5 +62,23 @@ public class EnemiesBehaviour : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); // Adjust angle if necessary
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+    }
+
+    public void DestroyEnnemy()
+    {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
