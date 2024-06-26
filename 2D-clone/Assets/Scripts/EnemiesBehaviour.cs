@@ -8,13 +8,12 @@ public class EnemiesBehaviour : MonoBehaviour
     public float maxDelay = 3f;
     public float smoothTime = 0.5f;
     public float rotationSpeed = 2f;
-
     public Transform player;
+    public float health = 100;
 
     private Vector3 targetPosition;
     private Vector3 velocity = Vector3.zero;
     private float moveDelay;
-    public float health = 100;
 
     void Start()
     {

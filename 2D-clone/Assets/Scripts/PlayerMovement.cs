@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject ammo;
     public float speed = 5f;
+    public float cooldownAmmo = 2;
     private float minX, maxX, minY, maxY;
     private Camera cam;
-    public GameObject ammo;
-    public float cooldownAmmo = 2;
-    public float time;
+    private float time;
 
     void Start()
     {

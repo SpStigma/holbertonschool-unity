@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class AmmoBehaviour : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 10f;
     private Rigidbody2D rb;
-    public int damageAmount = 20;
+    public int damageAmount = 25;
 
     void Start()
     {
