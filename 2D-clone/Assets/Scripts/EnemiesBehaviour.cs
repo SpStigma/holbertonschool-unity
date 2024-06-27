@@ -3,67 +3,75 @@ using UnityEngine;
 public class EnemiesBehaviour : MonoBehaviour
 {
     public static EnemiesBehaviour instance;
-    public float speed = 5f;
-    public float minDelay = 1f;
-    public float maxDelay = 3f;
-    public float smoothTime = 0.5f;
-    public float rotationSpeed = 2f;
-    public Transform player;
-    public float health = 100;
+    public float health;
+    private Camera cam;
+    private float minX, maxX, minY, maxY;
+    public float speed = 5;
+    private Vector3 targetPoint; // Store current target point for movement
+    private Transform playerPosition; // Changed to Transform for storing player's transform
 
-    private Vector3 targetPosition;
-    private Vector3 velocity = Vector3.zero;
-    private float moveDelay;
+    public float rotationSpeed = 5f; // Rotation speed for enemy to face player
 
-    void Start()
+    public void Start()
     {
         instance = this;
-        SetRandomTargetPosition();
-        SetRandomDelay();
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        if (playerMovement != null)
+        {
+            playerPosition = playerMovement.transform;
+        }
+        cam = Camera.main;
+        Vector3 screenBottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane));
+        Vector3 screenTopRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
+        minX = screenBottomLeft.x;
+        maxX = screenTopRight.x;
+        minY = screenBottomLeft.y;
+        maxY = screenTopRight.y;
+
+        SelectTargetPointInCam(); // Start by selecting a target point
     }
 
-    void Update()
+    public void Update()
     {
-        MoveTowardsTarget();
-        SmoothLookAtPlayer();
-        DestroyEnnemy();
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        // Move towards the selected target point
+        MoveTowards(targetPoint, speed);
+
+        // Look at the player if playerPosition is valid
+        if (playerPosition != null)
         {
-            SetRandomTargetPosition();
-            SetRandomDelay();
+            LookAtPlayer();
+        }
+
+        // Check if arrived at the target point
+        if (Vector3.Distance(transform.position, targetPoint) < 0.1f)
+        {
+            SelectTargetPointInCam(); // Select a new target point when arrived
         }
     }
 
-    void SetRandomTargetPosition()
+    public void SelectTargetPointInCam()
     {
-        Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        float randomX = Random.Range(-screenBounds.x, screenBounds.x);
-        float randomY = Random.Range(-screenBounds.y, screenBounds.y);
+        float targetX = Random.Range(minX, maxX);
+        float targetY = Random.Range(minY, maxY);
 
-        targetPosition = new Vector3(randomX, randomY, 0);
+        targetPoint = new Vector3(targetX, targetY, 0);
     }
 
-    void MoveTowardsTarget()
+    public void MoveTowards(Vector3 targetPoint, float speed)
     {
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime, speed);
+        transform.position = Vector3.MoveTowards(transform.position, targetPoint, speed * Time.deltaTime);
     }
 
-    void SetRandomDelay()
+    public void LookAtPlayer()
     {
-        moveDelay = Random.Range(minDelay, maxDelay);
-        Invoke(nameof(SetRandomTargetPosition), moveDelay);
-    }
-
-    void SmoothLookAtPlayer()
-    {
-        Vector3 direction = player.position - transform.position;
+        Vector3 direction = playerPosition.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); // Adjust angle if necessary
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
-    public void DestroyEnnemy()
+    public void DestroyEnemy()
     {
         if (health <= 0)
         {
@@ -74,7 +82,7 @@ public class EnemiesBehaviour : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-        
+
         if (health <= 0)
         {
             Destroy(gameObject);
