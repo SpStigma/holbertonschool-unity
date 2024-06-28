@@ -541,7 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammo: {fileID: 959043022600021944, guid: c530f5d43c6da3549aa6a42d87759bf2, type: 3}
   speed: 5
-  cooldownAmmo: 2
+  cooldownAmmo: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

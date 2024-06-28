@@ -38,8 +38,12 @@ public class AmmoBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            EnemiesBehaviour.instance.TakeDamage(damageAmount);
-            Destroy(gameObject);
+            EnemiesBehaviour enemy = other.GetComponent<EnemiesBehaviour>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damageAmount);
+                Destroy(gameObject);
+            }
         }
     }
 }

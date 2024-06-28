@@ -82,6 +82,7 @@ public class EnemiesBehaviour : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
+        Debug.Log(health + "apell fct");
 
         if (health <= 0)
         {
