@@ -42,3 +42,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Nebulla
+    uniqueID: 1462597307
+    locked: 0
+  - name: Star1
+    uniqueID: 669464651
+    locked: 0
+  - name: Star2
+    uniqueID: 2645467913
+    locked: 0
+  - name: Star3
+    uniqueID: 1612153055
+    locked: 0
+  - name: Star4
+    uniqueID: 1647836137
+    locked: 0
+  - name: enemies
+    uniqueID: 758395125
+    locked: 0
+  - name: players
+    uniqueID: 563380385
+    locked: 0
