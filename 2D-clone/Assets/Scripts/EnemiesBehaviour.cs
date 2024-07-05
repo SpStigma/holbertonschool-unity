@@ -71,21 +71,14 @@ public class EnemiesBehaviour : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
-    public void DestroyEnemy()
-    {
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-        Debug.Log(health + "apell fct");
 
         if (health <= 0)
         {
+            MenuBG.instance.IncreaseScore(1);
             Destroy(gameObject);
         }
     }
