@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     public GameObject ammo;
     public float speed = 5f;
     public float cooldownAmmo = 2;
@@ -9,8 +10,13 @@ public class PlayerMovement : MonoBehaviour
     private Camera cam;
     private float time;
 
+    public Transform pointOfShoot;
+
+    public int health = 3;
+
     void Start()
     {
+        instance = this;
         // Get the main Camera
         cam = Camera.main;
 
@@ -63,6 +69,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void Projectile()
     {
-        Instantiate(ammo, transform.position, transform.rotation);
+        Instantiate(ammo, pointOfShoot.position, transform.rotation);
+    }
+
+    
+    public void TakeDamageOnPlayer(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            Time.timeScale = 0;
+        }
     }
 }

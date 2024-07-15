@@ -12,6 +12,12 @@ public class EnemiesBehaviour : MonoBehaviour
 
     public float rotationSpeed = 5f; // Rotation speed for enemy to face player
 
+    public GameObject ammoToShootToPlayer;
+    public Transform pointToShoot;
+    private float time;
+    public float cooldownAmmo = 2;
+
+
     public void Start()
     {
         instance = this;
@@ -29,10 +35,12 @@ public class EnemiesBehaviour : MonoBehaviour
         maxY = screenTopRight.y;
 
         SelectTargetPointInCam(); // Start by selecting a target point
+        time = 0f;
     }
 
     public void Update()
     {
+        time += Time.deltaTime;
         // Move towards the selected target point
         MoveTowards(targetPoint, speed);
 
@@ -46,6 +54,12 @@ public class EnemiesBehaviour : MonoBehaviour
         if (Vector3.Distance(transform.position, targetPoint) < 0.1f)
         {
             SelectTargetPointInCam(); // Select a new target point when arrived
+        }
+
+        if (time >= cooldownAmmo)
+        {
+            Projectile();
+            time = 0f;
         }
     }
 
@@ -71,6 +85,10 @@ public class EnemiesBehaviour : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
+    public void Projectile()
+    {
+        Instantiate(ammoToShootToPlayer, pointToShoot.position, transform.rotation);
+    }
 
     public void TakeDamage(float damageAmount)
     {
