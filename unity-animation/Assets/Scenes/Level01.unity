@@ -1736,6 +1736,10 @@ PrefabInstance:
       propertyPath: timerToGive
       value: 
       objectReference: {fileID: 51522943}
+    - target: {fileID: 5866666019972118375, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1712283bd67820642bcd74e81d9a171e, type: 2}
     - target: {fileID: 6832532460187865443, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
       propertyPath: m_Name
       value: Player
