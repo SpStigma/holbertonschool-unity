@@ -45,6 +45,13 @@ public class PlayerController : MonoBehaviour
         // Move the player based on the movement vector and speed
         controller.Move(movement * speed * Time.deltaTime);
 
+
+        if (movement != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed);
+        }
+
         // If the jump button is pressed and the player is grounded, calculate the jump velocity
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
