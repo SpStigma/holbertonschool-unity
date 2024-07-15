@@ -1736,10 +1736,34 @@ PrefabInstance:
       propertyPath: timerToGive
       value: 
       objectReference: {fileID: 51522943}
+    - target: {fileID: 543450651795336477, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.959
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455732048373456531, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
+      propertyPath: m_Height
+      value: 2.2310572
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455732048373456531, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
+      propertyPath: m_Radius
+      value: 0.59333575
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455732048373456531, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
+      propertyPath: m_Center.y
+      value: 0.08459616
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455732048373456531, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
+      propertyPath: m_Center.z
+      value: -0.038541675
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666019972118375, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1712283bd67820642bcd74e81d9a171e, type: 2}
+    - target: {fileID: 5866666019972118375, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6832532460187865443, guid: 9da7e7707c1bd0744acedf6b117c6ef3, type: 3}
       propertyPath: m_Name
       value: Player
