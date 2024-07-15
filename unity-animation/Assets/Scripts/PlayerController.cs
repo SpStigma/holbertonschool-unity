@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = -2f;
             animator.SetBool("isJumping", false); // Reset jump state when grounded
+            animator.SetBool("isFalling", false);
         }
 
         // Get horizontal and vertical movement input (WASD or arrow keys)
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < -20)
         {
+            animator.SetBool("isFalling", true);
             transform.position = resetPosition;
         }
     }
