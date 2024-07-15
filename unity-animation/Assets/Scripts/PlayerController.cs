@@ -5,7 +5,10 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     public float speed = 5f;
     public float gravity = -9.18f;
-    public float jumpHeight = 8f; 
+    public float jumpHeight = 8f;
+
+    private Animator animator;
+    private Transform modelTransform;
 
     // Vector to store the player's velocity
     Vector3 velocity;
@@ -21,6 +24,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        modelTransform = transform.Find("ty");
+        animator = modelTransform.GetComponent<Animator>();
     }
 
     void Update()
@@ -51,6 +56,9 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * speed);
         }
+
+        bool isRunning = movement.magnitude > 0;
+        animator.SetBool("isRunning", isRunning);
 
         // If the jump button is pressed and the player is grounded, calculate the jump velocity
         if (Input.GetButtonDown("Jump") && isGrounded)
