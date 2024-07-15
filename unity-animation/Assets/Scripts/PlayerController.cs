@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
             transform.position = resetPosition;
         }
     }
-
     void LateUpdate()
     {
         // Sync model position with CharacterController position
