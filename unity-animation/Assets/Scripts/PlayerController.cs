@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
 
     private Vector3 resetPosition = new Vector3(0, 20, 0);
+    private bool justReset = false;
 
     void Start()
     {
@@ -33,6 +35,12 @@ public class PlayerController : MonoBehaviour
     {
         // Check if player is grounded using a sphere at groundCheck position
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && justReset)
+        {
+            animator.SetBool("isImpact", true);
+            justReset = false;
+        }
 
         // Apply gravity if player is grounded and falling
         if (isGrounded && velocity.y < 0)
@@ -88,18 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isFalling", true);
             transform.position = resetPosition;
+            justReset = true;
         }
-    }
-    void LateUpdate()
-    {
-        // Sync model position with CharacterController position
-        Vector3 modelPosition = modelTransform.position;
-        modelPosition.y = transform.position.y - 1f; // Maintain same Y position as CharacterController
-        modelPosition.x = transform.position.x; // Maintain same X position as CharacterController
-        modelPosition.z = transform.position.z; // Maintain same Z position as CharacterController
-        modelTransform.position = modelPosition;
-
-        // Sync model rotation with CharacterController rotation
-        modelTransform.rotation = transform.rotation;
     }
 }
