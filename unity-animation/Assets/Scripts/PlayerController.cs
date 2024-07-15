@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isImpact", true);
             justReset = false;
+
+            if(justReset == false)
+            {
+                animator.SetBool("isGettingUp", true);
+            }
         }
 
         // Apply gravity if player is grounded and falling
