@@ -31,7 +31,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: FallingToRunning
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: isFalling
@@ -382,7 +382,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: FallingToJump
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: isFalling
