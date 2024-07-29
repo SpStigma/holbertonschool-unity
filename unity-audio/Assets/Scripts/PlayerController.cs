@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 resetPosition = new Vector3(0, 20, 0);
     private bool justReset = false;
+    public AudioSource footStep;
+    public float lenghtFootStep;
+    
 
     void Start()
     {
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         modelTransform = transform.Find("ty"); // Make sure "ty" is the correct model name
         animator = modelTransform.GetComponent<Animator>();
+        lenghtFootStep = footStep.clip.length;
     }
 
     void Update()
@@ -76,6 +81,10 @@ public class PlayerController : MonoBehaviour
         // Update animator's isRunning parameter based on movement
         bool isRunning = movement.magnitude > 0;
         animator.SetBool("isRunning", isRunning);
+        if(isRunning)
+        {
+            PlayRunning();
+        }
 
         // Handle jump if jump button is pressed and player is grounded
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -103,5 +112,21 @@ public class PlayerController : MonoBehaviour
             transform.position = resetPosition;
             justReset = true;
         }
+    }
+
+    public void PlayRunning()
+    {
+        lenghtFootStep += Time.deltaTime;
+        float length = footStep.clip.length;
+        if(isGrounded)
+        {
+            if(lenghtFootStep >= length)
+            {
+                footStep.Play();
+                lenghtFootStep = 0f;
+            }
+        }
+        else
+        return;
     }
 }
