@@ -4905,6 +4905,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 233320055, guid: 8fabcc93ff4eef44da35e5044786b8ac, type: 3}
+      propertyPath: paused
+      value: 
+      objectReference: {fileID: -5786256597025618534, guid: 5624ed8bd8d724c4f915cb3af1223f1d, type: 2}
+    - target: {fileID: 233320055, guid: 8fabcc93ff4eef44da35e5044786b8ac, type: 3}
+      propertyPath: unPaused
+      value: 
+      objectReference: {fileID: 24500006, guid: 5624ed8bd8d724c4f915cb3af1223f1d, type: 2}
     - target: {fileID: 3823743026876971601, guid: 8fabcc93ff4eef44da35e5044786b8ac, type: 3}
       propertyPath: m_Pivot.x
       value: 0
