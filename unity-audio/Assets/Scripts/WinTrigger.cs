@@ -6,6 +6,7 @@ public class WinTrigger : MonoBehaviour
     public Timer timerScript;
     public TextMeshProUGUI timerText;
     public GameObject winCanvas;
+    public AudioSource BGM;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +16,7 @@ public class WinTrigger : MonoBehaviour
             winCanvas.SetActive(true);
             Timer.instance.Win();
             Timer.instance.timerText.enabled = false;
+            BGM.Stop();
         }
     }
 }
