@@ -32,11 +32,11 @@ public class PlayerController : MonoBehaviour
     {
         // Get necessary components at start
         controller = GetComponent<CharacterController>();
-        modelTransform = transform.Find("ty"); // Make sure "ty" is the correct model name
+        modelTransform = transform.Find("ty");
         animator = modelTransform.GetComponent<Animator>();
         footStepLength = footStep.clip.length;
         landingLength = landing.clip.length;
-        noLandingSound = 1; // Initialize noLandingSound to 1 to block the first landing sound
+        noLandingSound = 1;
     }
 
     void Update()
@@ -69,7 +69,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    noLandingSound--; // Decrement noLandingSound to ensure it's only blocked once
+                    // Decrement noLandingSound to ensure it's only blocked once
+                    noLandingSound--;
                 }
                 hasLanded = true;
             }
