@@ -1,11 +1,16 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     private bool isPaused = false;
+    public AudioMixerSnapshot paused;
+    public AudioMixerSnapshot unPaused;
 
     void Update()
     {
@@ -27,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         pauseMenuUI.SetActive(true);
         isPaused = true;
+        paused.TransitionTo(.01f);
     }
 
     public void Resume()
@@ -34,6 +40,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         pauseMenuUI.SetActive(false);
         isPaused = false;
+        unPaused.TransitionTo(.01f);
     }
 
     public void Restart()
