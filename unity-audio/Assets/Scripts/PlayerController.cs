@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,15 +15,18 @@ public class PlayerController : MonoBehaviour
 
     // Ground check variables
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.5f;
     public LayerMask groundMask;
     private bool isGrounded;
 
     private Vector3 resetPosition = new Vector3(0, 20, 0);
     private bool justReset = false;
     public AudioSource footStep;
-    public float lenghtFootStep;
-    
+    public AudioSource landing;
+    private float footStepLength;
+    private float landingLength;
+    private bool hasLanded;
+    private int noLandingSound;
 
     void Start()
     {
@@ -33,7 +34,9 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         modelTransform = transform.Find("ty"); // Make sure "ty" is the correct model name
         animator = modelTransform.GetComponent<Animator>();
-        lenghtFootStep = footStep.clip.length;
+        footStepLength = footStep.clip.length;
+        landingLength = landing.clip.length;
+        noLandingSound = 1; // Initialize noLandingSound to 1 to block the first landing sound
     }
 
     void Update()
@@ -45,8 +48,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isImpact", true);
             justReset = false;
-
-            if(justReset == false)
+            if (!justReset)
             {
                 animator.SetBool("isGettingUp", true);
             }
@@ -58,6 +60,23 @@ public class PlayerController : MonoBehaviour
             velocity.y = -2f;
             animator.SetBool("isJumping", false); // Reset jump state when grounded
             animator.SetBool("isFalling", false);
+            if (!hasLanded)
+            {
+                // Play landing sound if noLandingSound is 0
+                if (noLandingSound == 0)
+                {
+                    landing.Play();
+                }
+                else
+                {
+                    noLandingSound--; // Decrement noLandingSound to ensure it's only blocked once
+                }
+                hasLanded = true;
+            }
+        }
+        else
+        {
+            hasLanded = false;
         }
 
         // Get horizontal and vertical movement input (WASD or arrow keys)
@@ -81,7 +100,7 @@ public class PlayerController : MonoBehaviour
         // Update animator's isRunning parameter based on movement
         bool isRunning = movement.magnitude > 0;
         animator.SetBool("isRunning", isRunning);
-        if(isRunning)
+        if (isRunning)
         {
             PlayRunning();
         }
@@ -116,17 +135,27 @@ public class PlayerController : MonoBehaviour
 
     public void PlayRunning()
     {
-        lenghtFootStep += Time.deltaTime;
-        float length = footStep.clip.length;
-        if(isGrounded)
+        footStepLength += Time.deltaTime;
+        if (isGrounded)
         {
-            if(lenghtFootStep >= length)
+            if (footStepLength >= footStep.clip.length)
             {
                 footStep.Play();
-                lenghtFootStep = 0f;
+                footStepLength = 0f;
             }
         }
-        else
-        return;
+    }
+
+    public void PlayLanding()
+    {
+        if (!isGrounded && !justReset)
+        {
+            landingLength += Time.deltaTime;
+            if (landingLength >= landing.clip.length)
+            {
+                landing.Play();
+                landingLength = 0f;
+            }
+        }
     }
 }
