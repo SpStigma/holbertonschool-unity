@@ -466,6 +466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 3823743026420364601}
+  paused: {fileID: -5786256597025618534, guid: 5624ed8bd8d724c4f915cb3af1223f1d, type: 2}
+  unPaused: {fileID: 24500006, guid: 5624ed8bd8d724c4f915cb3af1223f1d, type: 2}
 --- !u!1 &3823743027006311041
 GameObject:
   m_ObjectHideFlags: 0
