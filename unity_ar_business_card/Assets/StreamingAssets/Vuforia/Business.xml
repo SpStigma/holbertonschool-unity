@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="Samsung_logo_test" size="1.000000 0.265924" />
+    <ImageTarget name="arbusinesscard" size="1.000000 0.998267" />
+  </Tracking>
+</QCARConfig>
