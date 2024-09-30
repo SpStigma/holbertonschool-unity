@@ -62,12 +62,19 @@ public class ChosePlanes : MonoBehaviour
 
     public void DisablePlanes()
     {
-        ARPlaneManager planeManager =  GetComponent<ARPlaneManager>();
-        foreach(var plane in planeManager.trackables)
+        ARPlaneManager planeManager = GetComponent<ARPlaneManager>();
+
+        foreach (var plane in planeManager.trackables)
         {
-            if(plane != ChosePlanes.selectedPlane)
+            // Ensure the plane hasn't been destroyed or disabled
+            if (plane != ChosePlanes.selectedPlane)
             {
-                plane.GetComponent<MeshRenderer>().enabled = false;
+                // Disable the plane's visual representation if it exists
+                var planeVisualiser = plane.GetComponent<ARPlaneMeshVisualizer>();
+                if(planeVisualiser != null)
+                {
+                    planeVisualiser.enabled = false;
+                }
             }
         }
     }
