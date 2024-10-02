@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using System.Collections.Generic;
+using Unity.Mathematics;
 
 public class ChosePlanes : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ChosePlanes : MonoBehaviour
 
     public static ARPlane selectedPlane;
     public GameObject button;
+    public GameObject Target;
 
     void Update()
     {
@@ -32,6 +34,12 @@ public class ChosePlanes : MonoBehaviour
             }
         }
         */
+
+        if (selectedPlane != null)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))  // Mouse left click simulates touch
         {
             Vector2 screenPosition = Input.mousePosition;
@@ -49,7 +57,6 @@ public class ChosePlanes : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void SelectPlane(ARPlane plane)
@@ -75,6 +82,19 @@ public class ChosePlanes : MonoBehaviour
                 {
                     planeVisualiser.enabled = false;
                 }
+            }
+        }
+    }
+
+    public void SpawnTarget()
+    {
+        float n = 5;
+        if(selectedPlane != null)
+        {
+            for(int i = 0; i < n; i++)
+            {
+                Instantiate(Target);
+                button.gameObject.SetActive(false);
             }
         }
     }
