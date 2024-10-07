@@ -18,14 +18,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Score()
     {
-        if (TargetBehaviour.Instance != null)
-        {
-            score.text = scoreTotal.ToString();
-        }
-        else
-        {
-            score.text = "0";
-        }
+        score.text = scoreTotal.ToString();
     }
 
     private void DisplayAmmo()

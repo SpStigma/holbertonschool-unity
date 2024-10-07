@@ -1,6 +1,5 @@
 using UnityEditor.UI;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -13,11 +12,20 @@ public class ButtonManager : MonoBehaviour
         SpawnAmmo.Instance.currentAmmoCount = 0;
         AmmoManager.SetActive(false);
         ScoreManager.Instance.scoreTotal = 0;
+        SpawnAmmo.Instance.AmmoLeft = SpawnAmmo.Instance.maxAmmoCount;
         
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void PlayAgainButton()
+    {
+        SpawnAmmo.Instance.currentAmmoCount = 0;
+        ScoreManager.Instance.scoreTotal = 0;
+        SpawnAmmo.Instance.AmmoLeft = SpawnAmmo.Instance.maxAmmoCount;
+        
     }
 }
