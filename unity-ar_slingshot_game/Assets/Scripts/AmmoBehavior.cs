@@ -81,11 +81,11 @@ public class AmmoBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Target"))
         {
-            DeleteAmmo();
+           Destroy(ammo);
         }
     }
 }
