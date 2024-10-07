@@ -6,17 +6,32 @@ public class SpawnAmmo : MonoBehaviour
 {
     public GameObject ammoPrefab;
     public Transform cameraTransform;
+    public int maxAmmoCount = 5; // Maximum number of ammo allowed
+    private int currentAmmoCount = 0; // Tracks the number of ammo spawned
+
+    void Update()
+    {
+        SpawnAmmoAtCamera();
+    }
 
     public void SpawnAmmoAtCamera()
     {
-        // Instancie l'ammo à la position de la caméra
-        GameObject ammoInstance = Instantiate(ammoPrefab, cameraTransform.position, cameraTransform.rotation);
+        // Check if there is no active ammo and if the limit of ammo hasn't been reached
+        GameObject currentAmmo = GameObject.FindGameObjectWithTag("Ammo");
 
-        // Rend l'ammo enfant de la caméra
-        ammoInstance.transform.SetParent(cameraTransform);
+        if (currentAmmo == null && currentAmmoCount < maxAmmoCount)
+        {
+            // Instantiate the ammo at the camera's position
+            GameObject ammoInstance = Instantiate(ammoPrefab, cameraTransform.position, cameraTransform.rotation);
 
-        // Si tu veux positionner l'ammo légèrement en avant de la caméra
-        ammoInstance.transform.localPosition = new Vector3(0, 0, 0.5f); // Ajuste la position locale selon tes besoins
+            // Make the ammo a child of the camera
+            ammoInstance.transform.SetParent(cameraTransform);
+
+            // Position the ammo slightly in front of the camera
+            ammoInstance.transform.localPosition = new Vector3(0, 0, 0.5f); // Adjust the local position as needed
+
+            // Increment the count of ammo spawned
+            currentAmmoCount++;
+        }
     }
-
 }
