@@ -75,7 +75,7 @@ public class AmmoBehavior : MonoBehaviour
 
     private void DeleteAmmo()
     {
-        if (ammo.transform.position.y < -30)
+        if (ammo.transform.position.y < -10)
         {
             Destroy(ammo);
         }
@@ -85,7 +85,7 @@ public class AmmoBehavior : MonoBehaviour
     {
         if (other.CompareTag("Target"))
         {
-            Debug.Log("Hit target: " + other.gameObject.name);
+            DeleteAmmo();
         }
     }
 }

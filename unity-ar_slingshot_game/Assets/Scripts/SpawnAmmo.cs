@@ -4,22 +4,41 @@ using UnityEngine;
 
 public class SpawnAmmo : MonoBehaviour
 {
+    public static SpawnAmmo Instance;
     public GameObject ammoPrefab;
     public Transform cameraTransform;
-    public int maxAmmoCount = 5; // Maximum number of ammo allowed
-    private int currentAmmoCount = 0; // Tracks the number of ammo spawned
+    public int maxAmmoCount = 8;
+    public int AmmoLeft = 8; // Maximum number of ammo allowed
+    public int currentAmmoCount = 0; // Tracks the number of ammo spawned
+    public GameObject buttonRestart;
+
+    void Start()
+    {
+        Instance = this;
+    }
 
     void Update()
     {
-        SpawnAmmoAtCamera();
+        // Only check for ammo if the current ammo count is less than the max
+        if (currentAmmoCount < maxAmmoCount)
+        {
+            SpawnAmmoAtCamera();
+        }
+
+        // Check if there are no active ammo and the current count has reached max
+        if (currentAmmoCount >= maxAmmoCount && GameObject.FindGameObjectWithTag("Ammo") == null)
+        {
+            TargetBehaviour.Instance.DestroyCapsule();
+            buttonRestart.SetActive(true);
+        }
     }
 
     public void SpawnAmmoAtCamera()
     {
-        // Check if there is no active ammo and if the limit of ammo hasn't been reached
+        // Check if there is no active ammo
         GameObject currentAmmo = GameObject.FindGameObjectWithTag("Ammo");
 
-        if (currentAmmo == null && currentAmmoCount < maxAmmoCount)
+        if (currentAmmo == null)
         {
             // Instantiate the ammo at the camera's position
             GameObject ammoInstance = Instantiate(ammoPrefab, cameraTransform.position, cameraTransform.rotation);
@@ -32,6 +51,7 @@ public class SpawnAmmo : MonoBehaviour
 
             // Increment the count of ammo spawned
             currentAmmoCount++;
+            AmmoLeft--;
         }
     }
 }

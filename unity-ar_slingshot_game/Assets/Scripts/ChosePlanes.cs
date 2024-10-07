@@ -6,6 +6,7 @@ using Unity.Mathematics;
 
 public class ChosePlanes : MonoBehaviour
 {
+    public static ChosePlanes Instance;
     public ARRaycastManager raycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -13,6 +14,10 @@ public class ChosePlanes : MonoBehaviour
     public GameObject button;
     public GameObject Target;
 
+    public void Start()
+    {
+        Instance = this;
+    }
     void Update()
     {
         /*
@@ -82,6 +87,20 @@ public class ChosePlanes : MonoBehaviour
                 {
                     planeVisualiser.enabled = false;
                 }
+            }
+        }
+    }
+
+    public void EnablePlanes()
+    {
+        ARPlaneManager planeManager = GetComponent<ARPlaneManager>();
+
+        foreach (var plane in planeManager.trackables)
+        {
+            var planeVisualiser = plane.GetComponent<ARPlaneMeshVisualizer>();
+            if(planeVisualiser != null)
+            {
+                planeVisualiser.enabled = true;
             }
         }
     }

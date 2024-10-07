@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using Unity.Collections;
 using System.Collections;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class TargetBehaviour : MonoBehaviour
 {
+    public static TargetBehaviour Instance;
     private GameObject capsule;
     public float movementSpeed = 1f;
     public float moveDuration = 2f; // Duration for the movement
@@ -13,11 +15,13 @@ public class TargetBehaviour : MonoBehaviour
     public float minScale = 0.1f; // Minimum scale factor
     public float maxScale = 1f; // Maximum scale factor
     public float scaleDistance = 5f; // Distance at which the scale reaches its minimum
+    public int scoreTarget = 10;
 
     private bool isMoving = false; // Track if the capsule is currently moving
 
     void Start()
     {
+        Instance = this;
         // Assign the capsule to the GameObject this script is attached to
         capsule = this.gameObject;
     }
@@ -125,5 +129,26 @@ public class TargetBehaviour : MonoBehaviour
         // Pick a random point from the boundary points
         int randomIndex = Random.Range(0, boundary.Length);
         return boundary[randomIndex];
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Ammo"))
+        {
+            ScoreManager.Instance.scoreTotal += scoreTarget;
+            Destroy(gameObject);
+        }
+    }
+
+    public void DestroyCapsule()
+    {
+        // Find all game objects with the tag "Target"
+        GameObject[] capsules = GameObject.FindGameObjectsWithTag("Target");
+        
+        // Iterate through each found capsule and destroy it
+        foreach (GameObject caps in capsules)
+        {
+            Destroy(caps);
+        }
     }
 }
