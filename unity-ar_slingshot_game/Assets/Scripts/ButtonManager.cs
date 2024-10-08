@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour
 
     public void RestartButton()
     {
+        TargetBehaviour.Instance.DestroyCapsule();
         ChosePlanes.selectedPlane = null;
         ChosePlanes.Instance.EnablePlanes();
         SpawnAmmo.Instance.currentAmmoCount = 0;
