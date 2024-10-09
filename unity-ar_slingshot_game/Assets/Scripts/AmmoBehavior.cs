@@ -19,58 +19,64 @@ public class AmmoBehavior : MonoBehaviour
 
     public void Update()
     {
-        // Begin drag when the mouse button is pressed
-        if (Input.GetMouseButtonDown(0))
+        // Check if the player has touched the screen
+        if (Input.touchCount > 0)
         {
-            isDragging = true;
-        }
+            Touch touch = Input.GetTouch(0);
 
-        // Handle dragging behavior
-        if (isDragging)
-        {
-            DragAmmo();
-        }
-
-        // Launch the ammo when the mouse button is released
-        if (Input.GetMouseButtonUp(0) && isDragging)
-        {
-            isDragging = false;
-            dragDistance = initialPosition.y - ammo.transform.position.y;
-
-            if (dragDistance > 0)
+            // Begin drag on touch start
+            if (touch.phase == TouchPhase.Began)
             {
-                ammo.transform.SetParent(null);
-                
-                // Center the ammo at the launch point
-                ammo.transform.position = new Vector3(ammo.transform.position.x, ammo.transform.position.y, ammo.transform.position.z);
-
-                // Calculate the force to apply, clamped to a maximum value
-                float appliedForce = Mathf.Clamp(dragDistance * force, 0, force);
-                
-                rb.isKinematic = false;
-                
-                // Add horizontal force based on camera's forward direction
-                Vector3 launchDirection = Camera.main.transform.forward;
-
-                // Add a vertical component to create a curve
-                Vector3 forceToApply = launchDirection * appliedForce + Vector3.up * (appliedForce * verticalForceMultiplier);
-                
-                rb.AddForce(forceToApply, ForceMode.Impulse);
+                isDragging = true;
             }
-            else
+
+            // Handle dragging behavior while the touch is moving
+            if (isDragging && (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary))
             {
-                ammo.transform.position = initialPosition;
+                DragAmmo(touch);
+            }
+
+            // Launch the ammo when the touch ends
+            if (touch.phase == TouchPhase.Ended && isDragging)
+            {
+                isDragging = false;
+                dragDistance = initialPosition.y - ammo.transform.position.y;
+
+                if (dragDistance > 0)
+                {
+                    ammo.transform.SetParent(null);
+
+                    // Center the ammo at the launch point
+                    ammo.transform.position = new Vector3(ammo.transform.position.x, ammo.transform.position.y, ammo.transform.position.z);
+
+                    // Calculate the force to apply, clamped to a maximum value
+                    float appliedForce = Mathf.Clamp(dragDistance * force, 0, force);
+
+                    rb.isKinematic = false;
+
+                    // Add horizontal force based on camera's forward direction
+                    Vector3 launchDirection = Camera.main.transform.forward;
+
+                    // Add a vertical component to create a curve
+                    Vector3 forceToApply = launchDirection * appliedForce + Vector3.up * (appliedForce * verticalForceMultiplier);
+
+                    rb.AddForce(forceToApply, ForceMode.Impulse);
+                }
+                else
+                {
+                    ammo.transform.position = initialPosition;
+                }
             }
         }
-        
+
         DeleteAmmo();
     }
 
-    private void DragAmmo()
+    private void DragAmmo(Touch touch)
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = Camera.main.WorldToScreenPoint(ammo.transform.position).z;
-        ammo.transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 touchPosition = touch.position;
+        touchPosition.z = Camera.main.WorldToScreenPoint(ammo.transform.position).z;
+        ammo.transform.position = Camera.main.ScreenToWorldPoint(touchPosition);
     }
 
     private void DeleteAmmo()

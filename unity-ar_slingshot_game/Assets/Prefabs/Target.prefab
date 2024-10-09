@@ -126,8 +126,9 @@ MonoBehaviour:
   boundaryThreshold: 0.1
   pauseDuration: 0.5
   minScale: 0.1
-  maxScale: 0.5
+  maxScale: 0.25
   scaleDistance: 2
+  scoreTarget: 10
 --- !u!1 &8949998912826137907
 GameObject:
   m_ObjectHideFlags: 0

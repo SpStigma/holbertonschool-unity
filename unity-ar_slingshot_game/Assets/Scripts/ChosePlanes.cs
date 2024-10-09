@@ -20,7 +20,11 @@ public class ChosePlanes : MonoBehaviour
     }
     void Update()
     {
-        /*
+
+        if (selectedPlane != null)
+        {
+            return;
+        }
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -38,13 +42,8 @@ public class ChosePlanes : MonoBehaviour
                 }
             }
         }
-        */
 
-        if (selectedPlane != null)
-        {
-            return;
-        }
-
+        /*
         if (Input.GetMouseButtonDown(0))  // Mouse left click simulates touch
         {
             Vector2 screenPosition = Input.mousePosition;
@@ -62,6 +61,7 @@ public class ChosePlanes : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     public void SelectPlane(ARPlane plane)
