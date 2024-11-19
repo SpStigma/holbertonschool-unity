@@ -7,4 +7,5 @@ EditorBuildSettings:
   m_Scenes: []
   m_configObjects:
     WebXR.Settings: {fileID: 11400000, guid: ce87651bc54e2974390fe3ba977081dc, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: ab7243b4e01f3854e9324f8c12428e43, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2ec6a89162d907446808a201044ecf74, type: 2}
