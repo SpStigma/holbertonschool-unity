@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         // If the headset is not connected, allow movement and camera rotation with keyboard/mouse
         if (!HeadSetVerificator.isHeadsetConnected)
         {
-            if(!BallBehaviour.desableMouseKeyboard)
+            if(!BallBehaviour.disableMouseKeyboard)
             {
                 HandleMouseKeyboardMovement();
                 HandleCameraRotation();
