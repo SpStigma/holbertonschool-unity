@@ -8,6 +8,10 @@ public class BallBehaviour : MonoBehaviour
     public float horizontalSpeed = 2f; // Horizontal movement speed (left/right)
     private bool isOnPiste = false; // Whether the ball is on the piste
     public static bool disableMouseKeyboard = false; // Disables player input when true
+    public GameObject trap;
+    public Transform positionXLeft;
+    public Transform positionYLeft;
+    public Transform positionXRight;
 
     private float originalSpeed; // Stores the base speed of the ball
 
@@ -85,4 +89,6 @@ public class BallBehaviour : MonoBehaviour
         // Ensure the speed resets exactly to the original value
         speed = originalSpeed;
     }
+    
+
 }
