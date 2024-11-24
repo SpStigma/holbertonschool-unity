@@ -8,10 +8,8 @@ public class BallBehaviour : MonoBehaviour
     public float horizontalSpeed = 2f; // Horizontal movement speed (left/right)
     private bool isOnPiste = false; // Whether the ball is on the piste
     public static bool disableMouseKeyboard = false; // Disables player input when true
-    public GameObject trap;
-    public Transform positionXLeft;
-    public Transform positionYLeft;
-    public Transform positionXRight;
+    private bool trapSpawned = false;
+    public SpawnTrap spawn;
 
     private float originalSpeed; // Stores the base speed of the ball
 
@@ -37,6 +35,12 @@ public class BallBehaviour : MonoBehaviour
             Debug.Log("On the piste");
             isOnPiste = true;
             disableMouseKeyboard = true; // Disable player input
+
+            if(!trapSpawned && spawn != null)
+            {
+                spawn.Spawn();
+                trapSpawned = true;
+            }
         }
 
         // Check if the ball enters a "speed" zone
@@ -89,6 +93,4 @@ public class BallBehaviour : MonoBehaviour
         // Ensure the speed resets exactly to the original value
         speed = originalSpeed;
     }
-    
-
 }
